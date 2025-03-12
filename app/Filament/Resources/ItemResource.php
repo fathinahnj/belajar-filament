@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Relations\Relation;
-
+use Filament\Tables\Columns\TextColumn;
 
 
 class ItemResource extends Resource
@@ -47,7 +47,11 @@ class ItemResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->label('Item Name'),
+                TextColumn::make('category.category_name')->label('Category')->sortable(),
+                TextColumn::make('desc')->label('Description'),
+                TextColumn::make('location')->label('Location'),
+                TextColumn::make('item_status.status_name')->label('Status'),
             ])
             ->filters([
                 //
